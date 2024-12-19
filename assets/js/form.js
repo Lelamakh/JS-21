@@ -113,9 +113,9 @@ const isConfirmPasswordValidFn = () => {
 const isPersonalNumberValidFn = () => {
   const personalNumberValue = personalNumberInput.value.trim();
   if (personalNumberValue === "") {
-    setErrorMessage(personalNumberInput, "Personal Number is reqiured");
+    setErrorMessage(personalNumberInput, "Personal Number is requIred");
   } else if (personalNumberValue.length != 11) {
-    setErrorMessage(personalNumberInput, "please, enter 11 digits");
+    setErrorMessage(personalNumberInput, "11 digits are required");
   } else {
     clearErrorMessage(personalNumberInput);
     return true;
@@ -142,6 +142,7 @@ registrationForm.addEventListener("submit", (e) => {
   const isConfirmPasswordValid = isConfirmPasswordValidFn();
   //   personalnumber validation
   const isPersonalNumberValid = isPersonalNumberValidFn();
+
   if (
     isNameValid &&
     isEmailValid &&
