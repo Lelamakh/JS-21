@@ -24,6 +24,12 @@ const passwordInput = registrationForm.querySelector("input[name='password']");
 const confirmPasswordInput = registrationForm.querySelector(
   "input[name='confirm-password']"
 );
+const personalNumberInput = registrationForm.querySelector(
+  "input[name='personalNumber']"
+);
+// const mobileNumberInput = registrationForm.querySelector(
+//   "input[name='mobileNumber']"
+// );
 
 const isValidEmail = (email) => {
   const re =
@@ -104,10 +110,24 @@ const isConfirmPasswordValidFn = () => {
   }
 };
 
+const isPersonalNumberValidFn = () => {
+  const personalNumberValue = personalNumberInput.value.trim();
+  if (personalNumberValue === "") {
+    setErrorMessage(personalNumberInput, "Personal Number is reqiured");
+  } else if (personalNumberValue.length != 11) {
+    setErrorMessage(personalNumberInput, "please, enter 11 digits");
+  } else {
+    clearErrorMessage(personalNumberInput);
+    return true;
+  }
+};
+
 nameInput.addEventListener("input", isNameValidFn);
 emailInput.addEventListener("input", isEmailValidFn);
 passwordInput.addEventListener("input", isPasswordValidFn);
 confirmPasswordInput.addEventListener("input", isConfirmPasswordValidFn);
+personalNumberInput.addEventListener("input", isPersonalNumberValidFn);
+// mobileNumberInput.addEventListener("input", isMobileNumberValidFn);
 
 registrationForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -120,12 +140,14 @@ registrationForm.addEventListener("submit", (e) => {
   const isPasswordValid = isPasswordValidFn();
   // confirm password validation
   const isConfirmPasswordValid = isConfirmPasswordValidFn();
-
+  //   personalnumber validation
+  const isPersonalNumberValid = isPersonalNumberValidFn();
   if (
     isNameValid &&
     isEmailValid &&
     isPasswordValid &&
-    isConfirmPasswordValid
+    isConfirmPasswordValid &&
+    isPersonalNumberValid
   ) {
     // registrationForm.submit();
 
